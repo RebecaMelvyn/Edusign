@@ -8,6 +8,7 @@ export default function App() {
         <Text style={styles.text}>Edu sign</Text>
       </View>
         <Text style={styles.title}>Scan it</Text>
+        <Text style={styles.title}>melvun it</Text>
       <StatusBar style="auto" />
     </View>
   );
