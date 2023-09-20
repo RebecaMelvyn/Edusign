@@ -1,35 +1,44 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { firebaseConfig } from './src/firebase/firebaseConfig'; // Importez la configuration Firebase
+import SignInScreen from './src/views/Login'; // Importez l'écran de connexion
+import SignUpScreen from './src/views/Register'; // Importez l'écran d'inscription
+import firebase from 'firebase/app';
+import 'firebase/auth';
+
+ 
+
+const Stack = createNativeStackNavigator();
+
+ 
+
+// Initialisez Firebase avec la configuration
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+
+ 
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <View style={styles.contain}>
-        <Text style={styles.text}>Edu sign</Text>
-      </View>
-        <Text style={styles.title}>Scan it</Text>
-        <Text style={styles.title}>melvun it</Text>
-      <StatusBar style="auto" />
-    </View>
+<NavigationContainer>
+<Stack.Navigator>
+        {/* Écran de connexion */}
+<Stack.Screen name="SignIn" component={SignInScreen} />
+
+        {/* Écran d'inscription */}
+<Stack.Screen name="SignUp" component={SignUpScreen} />
+
+        {/* Le reste de votre navigation... */}
+</Stack.Navigator>
+</NavigationContainer>
   );
 }
 
+ 
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'start',
-    marginTop: '10%',
-  },
-  contain: {
-    padding: '1%',
-    marginBottom: '5%',
-  },
-  text: {
-    paddingRight: '5%',
-    paddingLeft: '5%',
-    color: '#fff',
-    backgroundColor: '#ffc107',
-  },
+  // Vos styles ici...
 });
